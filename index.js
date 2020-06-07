@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+//all your data
 const contacts = require("./data/contacts")
 const vehicles = require("./data/vehicles")
 const comments = require("./data/comments")
@@ -17,20 +17,17 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 //CONTACTS
-const routeContacts = require('./routes/contacts')
-app.get(routeContacts)
+app.use(require('./routes/contacts'))
 
 //VEHICLES
-const routeVehicles = require('./routes/vehicles')
-app.get(routeVehicles)
+app.use(require('./routes/vehicles'))
 
 //COMMENTS
-const routeComments = require('./routes/comments')
-app.get(routeComments)
+app.use(require('./routes/comments'))
 
 //PRODUCTS
-const routerProducts = require('./routes/products')
-app.get(routerProducts)
+app.use(require('./routes/products'))
+
 
 app.listen(port, () => {
  console.log(`Web server is listening on port ${port}!`);
