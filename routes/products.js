@@ -10,5 +10,6 @@ router.get(("/products/:id"), productsController.single)
 
 //posts
 router.post(('/products'), productsController.create)
+router.post(('/products/:id'), productsController.createReview)
 
 module.exports = router

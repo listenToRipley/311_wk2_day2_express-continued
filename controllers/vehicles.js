@@ -41,18 +41,8 @@ const create = (req, res) => {
     isNew: input.isNew
 
   }
-    console.log(`this is my new addition object`, newVehicle)
-    //~~~ need to work on this more
-  // if (newVehicle) {
-  //  //set defaults to content that was not provided 
-  //  //using if individuals since any of these could individually be true, but they are not dependent on one another
-  //  if(newVehicle.price === typeof !Number) { newVehicle.price = `$${0}`}
-  //  if (newVehicle.km === typeof !Number) { newVehicle.km = 0}
-  //  if (newVehicle.miles ===typeof !Number) { newVehicle.miles = 0}
-  //  if (newVehicle.fuel === typeof !String) { newVehicle.fuel = 'Unknown'}
-  //  if (newVehicle.city === typeof !String) { newVehicle.city = 'Unknown'}
-  //  if (newVehicle.isNew ===typeof !String) { newVehicle.isNew = 'Unknown'}
-  // }
+  //would like to have default setting if nothing is provided.
+  // console.log(`this is my new addition object`, input, 'and the newVehicle object looks like', newVehicle)
 // need to require  their make and model
   if(!newVehicle.make || !newVehicle.model) {
   //if you are missing the name or occupation, then is not a valid entry.

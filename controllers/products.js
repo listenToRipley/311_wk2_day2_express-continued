@@ -26,12 +26,6 @@ const create = (req, res) => {
   const count = products.length
   const input = req.body
 
-  //~~since the this is a nested array within the reviews, we are creating a new object every time we want a new review, so this should get created first and separately. 
-    //should this have its own nest post? Can you do nested posts? 
-  const reviews = {
-    description: input.description, 
-    rating: input.rating
-  }
   //create new product
   const newProduct = {
     _id: count+1, //since the id is based on position in the object, this it should just be the 
@@ -41,7 +35,7 @@ const create = (req, res) => {
     imgUrl: input.imgUrl,
     price: input.price,
     category: input.category,
-    review: [reviews]
+    review: [createReview]
   }
     //console.log(`this is my new addition object ${newComment}`)
   if(!newProduct.name || !newProduct.price) {
@@ -54,9 +48,37 @@ const create = (req, res) => {
   res.json(products)
 }
 }
+//~~~ tried to create a separate post method of the review, need to come back and work on it.
+//since the this is a nested array within the reviews, we are creating a new object every time we want a new review, so this should get created first and separately. 
+const createReview =  (req, res) => { 
+//we have to create the product before we can review it.
+//since the product has been created, then we need to filter down to that product then locate the review field
+let idNum = parseInt(req.params.id)
+console.log('return number is :',idNum)
+//locate the id from the param 
+let findId  = (doc, num) => {
+let item = doc.find(product  => { 
+    console.log('each contact ? ', product)
+    console.log('their ids?', product._id)
+    return product._id === num
+      })
+  }
+
+const reviews = {
+description: input.description, 
+rating: input.rating
+}
+if (findId) {
+  return res.json(reviews)
+}
+if(findId(products, idNum) === false){
+  res.status(!200).send('not working')
+}
+}
 
 module.exports = {
   list,
   single,
-  create
+  create, 
+  createReview
 }
